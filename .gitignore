@@ -1,0 +1,10 @@
+http-client.private.env.json
+automater.iml
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+*.iws
+
+# Build output
+bin/
