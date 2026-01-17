@@ -33,12 +33,14 @@
 
 <script>
   async function dryRun() {
+    showBanner("⏳ Performing dry run...", "yellow");
     const res = await fetch("/api/dry-run");
     render(await res.json());
     showBanner("ℹ️ This is a dry run. No processes were terminated.", "yellow");
   }
 
   async function runCleanup() {
+    showBanner("⏳ Running cleanup...", "yellow");
     const res = await fetch("/api/run", { method: "POST" });
     const data = await res.json();
     render(data);
@@ -77,8 +79,11 @@
   }
 
   function showBanner(message, color) {
+    // remove existing banners
+    document.querySelectorAll(".banner").forEach(b => b.remove());
+    // create new banner
     const banner = document.createElement("div");
-    banner.className = `p-4 mb-4 text-white rounded ${
+    banner.className = `banner p-4 mb-4 text-white rounded ${
         color === "green" ? "bg-green-600" :
             color === "yellow" ? "bg-yellow-600" :
                 "bg-red-600"
